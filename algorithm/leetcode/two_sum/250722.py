@@ -15,7 +15,7 @@ Space: O(N) => nums length 만큼 반복문을 돌면서  hash table을 생성
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def twoSum1(self, nums, target):
         num_to_index_map = dict()
         for index in range(len(nums)):
             num_to_index_map[nums[index]] = index
@@ -32,6 +32,14 @@ class Solution(object):
             return [index, num_to_index_map[diff]]
 
         return [0, 0]
+
+    def twoSum(self, nums, target):
+        seen = {}
+        for index in range(len(nums)):
+            complement = target - nums[index]
+            if complement in seen:
+                return [index, seen[complement]]
+            seen[nums[index]] = index
 
 
 solution = Solution()
