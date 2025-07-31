@@ -18,6 +18,7 @@ O(N^2)의 풀이는 시간 제한에 걸리지 않을 것으로 보인다. 3,000
 from typing import List
 class Solution:
     """
+    Attempt-1 My solution (incorrect)
     time limited
     """
     def threeSum1(self, nums: List[int]) -> List[List[int]]:
@@ -43,7 +44,7 @@ class Solution:
         return list(triplets)
 
     """
-    another solution
+    Attempt-2 Another solution
     ref: https://www.algodale.com/problems/3sum/
     
     """
@@ -63,7 +64,7 @@ class Solution:
         return list(triplets)
 
     """
-    another solution
+    Attempt-3 Another solution
     ref: https://www.algodale.com/problems/3sum/
     
     [Plan]
