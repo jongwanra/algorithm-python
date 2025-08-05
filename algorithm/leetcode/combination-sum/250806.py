@@ -28,13 +28,14 @@ Space: O(N + M)
 
 from typing import List
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum1(self, candidates: List[int], target: int) -> List[List[int]]:
         cache = set()
         answer = []
         chosen = []
 
         def dfs(sum:int)->None:
             nonlocal target, candidates, cache, answer, chosen
+            print(chosen)
             if sum > target:
                 return
             if sum == target:
@@ -56,8 +57,40 @@ class Solution:
         dfs(0)
         return answer
 
+    """
+    중복 조합 방지 another solution
+    ref: https://www.algodale.com/problems/combination-sum/
+    
+    [Complexity]
+    N -> candidates.length
+    M -> target / min(candidates)
+    Time: O(N^M)
+    Space: O(M)
+    """
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        answer = []
+        combi = []
+
+        def dfs(sum:int, start:int)->None:
+            nonlocal target, answer, combi, candidates
+
+            if sum > target:
+                return
+            if sum == target:
+                answer.append(combi[:])
+                return
+
+            for index in range(start, len(candidates)):
+                candidate = candidates[index]
+                combi.append(candidate)
+                dfs(sum + candidate, index)
+                combi.pop()
+        dfs(0, 0)
+        return answer
+
+
 
 sol = Solution()
-print(sol.combinationSum([2,3,6,7], 7))
+# print(sol.combinationSum([2,3,6,7], 7))
 print(sol.combinationSum([2, 3, 5], 8))
-print(sol.combinationSum([2], 1))
+# print(sol.combinationSum([2], 1))
