@@ -100,3 +100,4 @@ class Solution:
 
 sol = Solution()
 print(sol.threeSum3([-1, 0, 1, 2, -1, 4]))
+
